@@ -3,6 +3,11 @@
 			<title>Javascript</title>
 			
 			<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
 			
 			#shape{
 			
@@ -25,13 +30,17 @@
 			
 			</head>
 			<div class="text">
-			<h1>Want to know how fast are you?</h1>
+			<h1><b>Want to know how fast are you?</b></h1>
 			<p>Click on the random boxes which appear and find how fast are you</p>
+			<hr style="height: 15px; background-color: black;";">
 			</div>
 		<body>
 		
-		
-				<p>Time Taken is <span id="text"></span></p>
+				<div id="scoreboard">
+					<h1 >Time Taken is <span id="text"></span></h1><h1> High score <span id="highScore"></span></h1>
+				</div>
+				
+				<hr style="height: 10px; background-color: greenyellow;">
 
 			
 				<div id="shape"></div>
@@ -40,6 +49,18 @@
 			
 			
 			<script type="text/javascript"> 
+			    var high=Number.MAX_VALUE;
+				
+				let scoreboard=document.getElementById("scoreboard");
+				scoreboard.style.display="flex";
+				scoreboard.style.justifyContent="space-around";
+
+				let text=document.getElementsByClassName("text");
+				text[0].style.backgroundColor="yellow";
+				let h=document.getElementsByTagName("h1");
+				h[0].style.backgroundAttachment="red";
+				
+				 document.body.style.border="10px solid black";
 
 				var start = new Date().getTime();
 				
@@ -89,6 +110,7 @@
 				document.getElementById("shape").style.top = top + "px";
 				
 				document.getElementById("shape").style.left = left + "px";
+				document.getElementById("shape").style.border="5px solid black"
 
 				
 				
@@ -114,11 +136,25 @@
 				
 				var end = new Date().getTime();
 				
-				var timeTaken = (end - start)/1000 + "s";
+				var timeTaken =(Number) ((end - start)/1000);
+			    
+
+				if(high>timeTaken)
+				{
+					console.log("chek");
+					high=timeTaken
+				}
+				
+				
+				document.getElementById("highScore").innerHTML=high;
+				
+				
+				timeTaken=timeTaken+"s";
+				
 				
 				document.getElementById("text").innerHTML=timeTaken;
 				
-				
+			
 
 				
 				document.getElementById("shape").style.display="none";
